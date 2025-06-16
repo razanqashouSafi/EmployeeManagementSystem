@@ -4,7 +4,51 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+
+<div class="container mt-4">
+    <h2>Employee Data</h2>
+
+   
+    <a class="btn btn-primary mb-3" asp-area="" asp-page="/EmployeeFE/AddEmployee">Add Employee</a>
+
+
+    <table class="table table-bordered table-striped" id="employeeTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody>
+                @foreach (var emp in Model.Employees)
+                {
+                <tr>
+                    <td>@emp.FirstName</td>
+                    <td>@emp.LastName</td>
+                    <td>@emp.Email</td>
+                    <td>@emp.PhoneNumber</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm"
+                           asp-area=""
+                           asp-page="/EmployeeFE/EditEmployee"
+                           asp-route-id="@emp.Id">Edit</a>
+
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@emp.Id" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                }
+        </tbody>
+
+    </table>
+
+  
 </div>
