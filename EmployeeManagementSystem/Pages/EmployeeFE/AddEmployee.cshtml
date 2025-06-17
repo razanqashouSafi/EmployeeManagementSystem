@@ -1,0 +1,28 @@
+﻿@page
+@model EmployeeManagementSystem.Pages.EmployeeFE.AddEmployeeModel
+@{
+    ViewData["Title"] = "Add Employee Page";
+}
+<h2>Add New Employee</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="Employee.FirstName"></label>
+        <input asp-for="Employee.FirstName" />
+        <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Employee.LastName"></label>
+        <input asp-for="Employee.LastName" />
+        <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Employee.Salary"></label>
+        <input asp-for="Employee.Salary" type="number" step="0.01" />
+        <span asp-validation-for="Employee.Salary" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Save</button>
+</form>
