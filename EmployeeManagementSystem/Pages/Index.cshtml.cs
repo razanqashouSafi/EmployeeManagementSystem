@@ -17,13 +17,16 @@ namespace EmployeeManagementSystem.Pages
             _context = context;
         }
 
-       
 
-     
+      
         public List<Employee> Employees { get; set; }
         public async Task OnGetAsync()
         {
             Employees = await _context.Employees.ToListAsync();
         }
+
+
+     
+
     }
 }
