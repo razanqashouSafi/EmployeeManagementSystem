@@ -25,5 +25,19 @@ namespace EmployeeManagementSystem.Pages
         {
             Employees = await _context.Employees.ToListAsync();
         }
+
+
+        public  IActionResult OnPostDelete(int id)
+        {
+            var employee=_context.Employees.Find( id);
+            if (employee != null)
+            {
+               _context.Employees.Remove(employee);
+              _context.SaveChanges();
+
+            }
+
+            return RedirectToPage("/Index");
+        }
     }
 }
