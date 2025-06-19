@@ -17,9 +17,7 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
         [BindProperty]
         public Employee Employee { get; set; }
-        private void OnGet()
-        {
-        }
+       
 
 
 

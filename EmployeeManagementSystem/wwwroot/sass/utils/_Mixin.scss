@@ -1,0 +1,26 @@
+﻿@mixin input-style {
+    width: 100%;
+    padding: $input-padding;
+    border: 1px solid lighten($primary, 25%);
+    border-radius: $border-radius;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: $secondary;
+        box-shadow: 0 0 0 3px rgba($secondary, 0.2);
+    }
+}
+
+@mixin label-style {
+    font-weight: 600;
+    color: darken($text, 10%);
+    margin-bottom: 0.4rem;
+    display: inline-block;
+}
+
+@mixin error-text {
+    font-size: 0.85rem;
+    color: $error;
+}

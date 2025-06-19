@@ -1,8 +1,8 @@
-﻿body {
-	background-color: #3498db;
-	color: white;
-}
+﻿
+@import 'utils/_variables.scss';
 
-h2{
-	color:aquamarine;
-}
+@import 'utils/_Mixin.scss';
+
+
+
+@import 'pages/AddEmployee.scss';

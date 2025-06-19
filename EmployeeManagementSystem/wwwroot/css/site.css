@@ -1,10 +1,1 @@
-body {
-  background-color: #3498db;
-  color: white;
-}
-
-h2 {
-  color: aquamarine;
-}
-
-/*# sourceMappingURL=site.css.map */
+sass wwwroot/sass/Style.scss wwwroot/css/site.css
