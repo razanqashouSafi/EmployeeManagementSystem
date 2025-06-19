@@ -7,6 +7,8 @@
 <h2 class="my-4">Edit Employee</h2>
 
 <form method="post" class="needs-validation" novalidate>
+
+        <input type="hidden" asp-for="Employee.Id" />
     <div class="mb-3">
         <label asp-for="Employee.FirstName" class="form-label"></label>
         <input asp-for="Employee.FirstName" class="form-control" />
@@ -61,7 +63,7 @@
         <span asp-validation-for="Employee.profileImage" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-success">Update Employee</button>
+    <button  type="submit" class="btn btn-success">Update Employee</button>
 </form>
 
 @section Scripts {
