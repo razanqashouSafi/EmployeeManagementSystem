@@ -4,7 +4,9 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="container mt-4">
+
+
+<div class="container mt-4  index-page">
     <h2>Employee Data</h2>
 
     <a class="btn btn-primary mb-3" asp-area="" asp-page="/EmployeeFE/AddEmployee">Add Employee</a>
@@ -29,7 +31,7 @@
                     <td>@emp.PhoneNumber</td>
                     <td>
                         <a asp-page="/EmployeeFE/EditEmployee" asp-route-id="@emp.Id" class="btn btn-warning btn-sm">Edit</a>
-
+                        <a asp-page="/EmployeeFE/EmployeeDelatis" asp-route-id="@emp.Id" class="btn btn-info btn-sm">Details</a>
 
                         <form method="post" asp-page-handler="Delete" asp-route-id="@emp.Id" style="display:inline;">
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -40,3 +42,6 @@
         </tbody>
     </table>
 </div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.css" />
+}A

@@ -1,0 +1,123 @@
+﻿@use '../utils/Mixin' as mixin;
+
+.index-page {
+    padding: 2rem;
+
+    h2 {
+        color: #6a0dad;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+        background-color: #6a0dad;
+        border-color: #6a0dad;
+        color: #fff;
+        font-weight: 600;
+
+        &:hover {
+            background-color: lighten(#6a0dad, 10%);
+            border-color: lighten(#6a0dad, 10%);
+        }
+    }
+
+    table {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-collapse: collapse;
+
+        th {
+            background-color: #6a0dad;
+            color: #fff;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .btn {
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap; 
+        }
+
+        .btn-warning {
+            background-color: #8a2be2;
+            border-color: #8a2be2;
+            color: #fff;
+
+            &:hover {
+                background-color: lighten(#8a2be2, 10%);
+                border-color: lighten(#8a2be2, 10%);
+            }
+        }
+
+        .btn-info {
+            background-color: #9b30ff;
+            border-color: #9b30ff;
+            color: #fff;
+
+            &:hover {
+                background-color: lighten(#9b30ff, 10%);
+                border-color: lighten(#9b30ff, 10%);
+            }
+        }
+
+        .btn-danger {
+            background-color: #b300b3;
+            border-color: #b300b3;
+            color: #fff;
+
+            &:hover {
+                background-color: lighten(#b300b3, 10%);
+                border-color: lighten(#b300b3, 10%);
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        table {
+            font-size: 0.85rem;
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            .btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.75rem;
+            }
+        }
+    }
+
+    @media (max-width: 576px) {
+        table {
+            display: block;
+            overflow-x: auto; 
+            white-space: nowrap;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-bottom: 0.2rem;
+        }
+    }
+}

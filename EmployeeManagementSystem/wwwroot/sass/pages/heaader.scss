@@ -1,0 +1,25 @@
+﻿.navbar-purple {
+    background: linear-gradient(90deg, #6a0dad, #9b30ff);
+    color: #fff;
+}
+
+.navbar-brand {
+    color: #fff !important;
+}
+
+
+
+.nav-link {
+    color: #eee !important;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    transition: color 0.2s ease;
+    font-size: 20px; 
+    font-weight: 500; 
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: transparent;
+    color: #fff !important;
+}

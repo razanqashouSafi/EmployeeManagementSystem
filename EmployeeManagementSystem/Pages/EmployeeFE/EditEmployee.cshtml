@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Edit Employee";
 }
-
+<div class="edit-employee-card">
 <h2 class="my-4">Edit Employee</h2>
 
 <form method="post" class="needs-validation" novalidate>
@@ -63,9 +63,12 @@
         <span asp-validation-for="Employee.profileImage" class="text-danger"></span>
     </div>
 
-    <button  type="submit" class="btn btn-success">Update Employee</button>
+        <button type="submit" class=" btn btn-primary">Update Employee</button>
 </form>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+</div>
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.css" />
 }

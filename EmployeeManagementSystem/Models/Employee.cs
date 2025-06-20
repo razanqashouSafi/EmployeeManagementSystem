@@ -12,11 +12,13 @@ namespace EmployeeManagementSystem.Models
 
      [Required]
      [Phone]
+     [RegularExpression(@"^(077|078|079|076)\d{7}$", ErrorMessage = "Phone must start with 077, 078, 079, or 076 and be 10 digits.")]
      public string PhoneNumber { get; set; }
 
      [Required]
      [EmailAddress]
-     public string Email { get; set; }
+     [RegularExpression(@"^[a-zA-Z0-9._%+-]+@gmail\.com$", ErrorMessage = "Email must be a valid Gmail address.")]
+        public string Email { get; set; }
       [Required]
      public decimal Salary { get; set; }
 

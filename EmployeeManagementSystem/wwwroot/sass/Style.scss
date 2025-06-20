@@ -1,8 +1,13 @@
-﻿
-@import 'utils/_variables.scss';
+﻿@use 'sass:color';
+// لاستيراد مكتبة الألوان من Sass (مهم إذا تستخدم color.adjust مثلاً)
 
-@import 'utils/_Mixin.scss';
+@use 'utils/_Mixin' as mixin; // تعطي Namespace "mixin"
+@use 'pages/heaader';
+@use 'pages/AddEmployee';
+@use 'pages/EditEmployee';
+@use 'pages/Index';
+@use 'pages/EmployeeDelails';
 
 
 
-@import 'pages/AddEmployee.scss';
+

@@ -1,0 +1,29 @@
+﻿@page
+@model EmployeeManagementSystem.Pages.EmployeeFE.EmployeeDelatisModel
+@{
+    ViewData["Title"] = "Employee Details";
+}
+<div class="page-wrapper">
+<div class="container mt-4 employee-details-card">
+    <div class="profile-image">
+            <img src="/images/OIP.jpg" alt="Employee Image" />
+
+    </div>
+
+    <h2>@Model.Employee.FirstName @Model.Employee.LastName</h2>
+
+    <div class="details">
+        <p><strong>Email:</strong> @Model.Employee.Email</p>
+        <p><strong>Phone:</strong> @Model.Employee.PhoneNumber</p>
+        <p><strong>Position:</strong> @Model.Employee.position</p>
+        <p><strong>Salary:</strong> @Model.Employee.Salary.ToString("C")</p>
+        <p><strong>Hire Date:</strong> @Model.Employee.HireDate?.ToString("yyyy-MM-dd")</p>
+        <p><strong>Date of Birth:</strong> @Model.Employee.DateOfBirth?.ToString("yyyy-MM-dd")</p>
+    </div>
+
+    <a asp-page="/Index" class="btn btn-primary">Back to List</a>
+</div>
+</<div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.css" />
+}
