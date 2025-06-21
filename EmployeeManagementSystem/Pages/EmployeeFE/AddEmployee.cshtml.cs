@@ -10,6 +10,8 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
     {
 
         private readonly EmployeeManagementDbContextb _context;
+
+      
         public AddEmployeeModel(EmployeeManagementDbContextb context)
         {
            _context = context;
@@ -32,9 +34,13 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
             Employee.CreateDate = DateTime.Now;
 
             _context.Employees.Add(Employee);
+           
             _context.SaveChanges();
 
+            
+
             return RedirectToPage("/Index"); 
+
         }
     }
 }
