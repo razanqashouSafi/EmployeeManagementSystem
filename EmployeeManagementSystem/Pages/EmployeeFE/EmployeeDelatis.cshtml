@@ -6,7 +6,13 @@
 <div class="page-wrapper">
 <div class="container mt-4 employee-details-card">
     <div class="profile-image">
-            <img src="/images/OIP.jpg" alt="Employee Image" />
+            @* <img src="/images/OIP.jpg" alt="Employee Image" /> *@
+            <img  src="@(string.IsNullOrEmpty(Model.Employee.profileImage)
+               ? "/images/OIP.jpg" 
+               : Model.Employee.profileImage)" 
+               alt="Employee Image" />
+
+
 
     </div>
 
