@@ -1,6 +1,7 @@
 ﻿using EmployeeManagementSystem.Context;
 using EmployeeManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,13 +18,15 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
         [BindProperty]
         public Employee Employee { get; set; }
-       
+
+
+        [BindProperty]
+
+        public IFormFile? ProfileImageFile { get; set; }
 
 
 
 
-
-    
         public IActionResult OnGet(int id)
         {
             Employee = _context.Employees.Find(id);
@@ -36,40 +39,44 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            try
+            var employeeInDb = await _context.Employees.FindAsync(Employee.Id);
+
+            if (employeeInDb == null)
             {
-                var employeeInDb = _context.Employees.Find(Employee.Id);
-                if (employeeInDb == null)
+                return NotFound();
+            }
+
+            employeeInDb.FirstName = Employee.FirstName;
+            employeeInDb.LastName = Employee.LastName;
+            employeeInDb.Email = Employee.Email;
+            employeeInDb.PhoneNumber = Employee.PhoneNumber;
+            employeeInDb.Salary = Employee.Salary;
+            employeeInDb.Position = Employee.Position;
+            employeeInDb.HireDate = Employee.HireDate;
+            employeeInDb.DateOfBirth = Employee.DateOfBirth;
+
+            if (ProfileImageFile != null && ProfileImageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImageFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    return NotFound();
+                    await ProfileImageFile.CopyToAsync(stream);
                 }
 
-                employeeInDb.FirstName = Employee.FirstName;
-                employeeInDb.LastName = Employee.LastName;
-                employeeInDb.Email = Employee.Email;
-                employeeInDb.PhoneNumber = Employee.PhoneNumber;
-                employeeInDb.Salary = Employee.Salary;
-                employeeInDb.position = Employee.position;
-                employeeInDb.HireDate = Employee.HireDate;
-                employeeInDb.DateOfBirth = Employee.DateOfBirth;
-                employeeInDb.profileImage = Employee.profileImage;
-
-                _context.SaveChanges();
-
-                return RedirectToPage("/Index");
+                employeeInDb.ProfileImage = "/images/" + fileName;
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Error saving to database: " + ex.Message);
-                return Page();
-            }
+         
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Index");
         }
 
 

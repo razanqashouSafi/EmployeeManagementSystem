@@ -1,39 +1,56 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EmployeeManagementSystem.Models.Validation;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace EmployeeManagementSystem.Models
 {
     public class Employee: MainEntity
     {
-       [MaxLength(50)]
-     public string FirstName { get; set; }
+        [Required]
+        [MaxLength(50)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
 
-      [MaxLength(50)]
-      public string LastName { get; set; }
+        [Required]
+        [MaxLength(50)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
 
-     [Required]
-     [Phone]
-     [RegularExpression(@"^(077|078|079|076)\d{7}$", ErrorMessage = "Phone must start with 077, 078, 079, or 076 and be 10 digits.")]
-     public string PhoneNumber { get; set; }
+        [Required]
+        [Phone]
+        [RegularExpression(@"^(077|078|079|076)\d{7}$", ErrorMessage = "Phone must start with 077, 078, 079, or 076 and be 10 digits.")]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
-     [Required]
-     [EmailAddress]
-     [RegularExpression(@"^[a-zA-Z0-9._%+-]+@gmail\.com$", ErrorMessage = "Email must be a valid Gmail address.")]
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
         public string Email { get; set; }
-      [Required]
-     public decimal Salary { get; set; }
 
-      [Required]
-     public string position { get; set; }
+        [Required(ErrorMessage = "Salary is required.")]
+        [Range(260, double.MaxValue, ErrorMessage = "Salary must be at least 260 JD.")]
+        [Display(Name = "Salary (JD)")]
+        public decimal Salary { get; set; }
 
-     [DataType(DataType.Date)]
-     public DateTime? HireDate { get; set; }
+        [Required]
+        [Display(Name = "Position")]
+        public string Position { get; set; }
 
-     public DateTime? DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [NotFutureDate(ErrorMessage = "Hire date cannot be in the future.")]
+        [Display(Name = "Hire Date")]
+        [Required]
+        public DateTime? HireDate { get; set; }
 
-     public string? profileImage { get; set; }
+        [Required]
+        [Display(Name = "Date of Birth")]
+        [MinAge(18)]
+        public DateTime? DateOfBirth { get; set; }
+        
 
 
-    
-
+        [Display(Name = "Profile Image")]
+     
+        public string? ProfileImage { get; set; }
     }
 }

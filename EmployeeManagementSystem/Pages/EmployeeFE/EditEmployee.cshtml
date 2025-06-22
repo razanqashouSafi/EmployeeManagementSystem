@@ -6,7 +6,7 @@
 <div class="edit-employee-card">
 <h2 class="my-4">Edit Employee</h2>
 
-<form method="post" class="needs-validation" novalidate>
+    <form method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
 
         <input type="hidden" asp-for="Employee.Id" />
     <div class="mb-3">
@@ -40,9 +40,9 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Employee.position" class="form-label"></label>
-        <input asp-for="Employee.position" class="form-control" />
-        <span asp-validation-for="Employee.position" class="text-danger"></span>
+        <label asp-for="Employee.Position" class="form-label"></label>
+        <input asp-for="Employee.Position" class="form-control" />
+        <span asp-validation-for="Employee.Position" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -57,11 +57,14 @@
         <span asp-validation-for="Employee.DateOfBirth" class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Employee.profileImage" class="form-label"></label>
-        <input asp-for="Employee.profileImage" class="form-control" type="text" />
-        <span asp-validation-for="Employee.profileImage" class="text-danger"></span>
-    </div>
+        
+
+        <div class="mb-3">
+            <label class="form-label">Upload New Profile Image</label>
+            <input asp-for="ProfileImageFile" type="file" class="form-control" accept="image/*" />
+            <span asp-validation-for="ProfileImageFile" class="text-danger"></span>
+        </div>
+
 
         <button type="submit" class=" btn btn-primary">Update Employee</button>
 </form>

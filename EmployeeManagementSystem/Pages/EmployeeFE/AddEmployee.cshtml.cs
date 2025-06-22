@@ -1,6 +1,7 @@
 ﻿using EmployeeManagementSystem.Context;
 using EmployeeManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,8 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
         private readonly EmployeeManagementDbContextb _context;
 
-      
+       
+
         public AddEmployeeModel(EmployeeManagementDbContextb context)
         {
            _context = context;
@@ -19,28 +21,72 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
         [BindProperty]
         public Employee Employee { get; set; }
+
+
+        [BindProperty]
+   
+        public IFormFile? ProfileImageFile { get; set; }
         public void OnGet()
         {
         }
 
 
-        public IActionResult OnPost()
+        //public IActionResult OnPost()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();  
+        //    }
+
+        //    Employee.CreateDate = DateTime.Now;
+
+        //    _context.Employees.Add(Employee);
+
+        //    _context.SaveChanges();
+
+
+
+        //    return RedirectToPage("/Index"); 
+
+        //}
+
+
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                return Page();  
+                return Page();
             }
 
-            Employee.CreateDate = DateTime.Now;
+            if (ProfileImageFile != null && ProfileImageFile.Length > 0)
+            {
+                var allowedContentTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/bmp", "image/webp" };
 
-            _context.Employees.Add(Employee);
-           
-            _context.SaveChanges();
+                if (!allowedContentTypes.Contains(ProfileImageFile.ContentType.ToLower()))
+                {
+                    ModelState.AddModelError("ProfileImageFile", "Only image files (jpg, png, gif, bmp, webp) are allowed.");
+                    return Page();
+                }
 
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImageFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ProfileImageFile.CopyToAsync(stream);
+                }
+
+                Employee.ProfileImage = "/images/" + fileName;
+            }
             
 
-            return RedirectToPage("/Index"); 
+            _context.Employees.Add(Employee);
+            await _context.SaveChangesAsync();
 
+            return RedirectToPage("/Index");
         }
+
+
+
     }
 }

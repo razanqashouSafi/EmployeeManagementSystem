@@ -1,0 +1,52 @@
+++++ ( CLIENT )
+
+//LOGIN
+
+EMAIL>> hashed 
+PASSWORD >> hashed
+
+>>>> Auth (send OTP on email | phone ) // user-id
+
+-------------------------------------
+
+//signup 
+phone ( country code (global) )
+email >>hashed
+name 
+pass  >>hashed
+
+
+>>>> Auth (send OTP on email | phone ) // user-id
+
+---------------------------------------
+//send otp
+ email
+
+>>>message
+
+-------------------------------
+
+//rest pass
+
+user id 
+pass 
+cofirm pass
+
+>>>>message (successful)
+
+-------------------------------
+//verification
+type  // user-id //OTP
+
++ login 
+
+>>>> token
+
++ signup , reset pass 
+
+>>>> message 
+
+
+
+
+
