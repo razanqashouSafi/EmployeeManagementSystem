@@ -53,6 +53,28 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
                 return NotFound();
             }
 
+            bool hasErrors = false;
+
+           
+            if (await _context.Employees.AnyAsync(e => e.Email == Employee.Email && e.Id != Employee.Id))
+            {
+                ModelState.AddModelError("Employee.Email", "Email is already in use.");
+                hasErrors = true;
+            }
+
+            
+            if (await _context.Employees.AnyAsync(e => e.PhoneNumber == Employee.PhoneNumber && e.Id != Employee.Id))
+            {
+                ModelState.AddModelError("Employee.PhoneNumber", "Phone number is already in use.");
+                hasErrors = true;
+            }
+
+            if (hasErrors)
+            {
+                return Page(); 
+            }
+
+            
             employeeInDb.FirstName = Employee.FirstName;
             employeeInDb.LastName = Employee.LastName;
             employeeInDb.Email = Employee.Email;
@@ -74,7 +96,7 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
                 employeeInDb.ProfileImage = "/images/" + fileName;
             }
-         
+
             await _context.SaveChangesAsync();
             return RedirectToPage("/Index");
         }

@@ -12,11 +12,11 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
         private readonly EmployeeManagementDbContextb _context;
 
-       
+
 
         public AddEmployeeModel(EmployeeManagementDbContextb context)
         {
-           _context = context;
+            _context = context;
         }
 
         [BindProperty]
@@ -24,7 +24,7 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
 
         [BindProperty]
-   
+
         public IFormFile? ProfileImageFile { get; set; }
         public void OnGet()
         {
@@ -58,6 +58,20 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
                 return Page();
             }
 
+            bool hasErrors = false;
+
+            if (await _context.Employees.AnyAsync(e => e.Email == Employee.Email))
+            {
+                ModelState.AddModelError("Employee.Email", "Email is already in use.");
+                hasErrors = true;
+            }
+
+            if (await _context.Employees.AnyAsync(e => e.PhoneNumber == Employee.PhoneNumber))
+            {
+                ModelState.AddModelError("Employee.PhoneNumber", "Phone number is already in use.");
+                hasErrors = true;
+            }
+
             if (ProfileImageFile != null && ProfileImageFile.Length > 0)
             {
                 var allowedContentTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/bmp", "image/webp" };
@@ -65,9 +79,17 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
                 if (!allowedContentTypes.Contains(ProfileImageFile.ContentType.ToLower()))
                 {
                     ModelState.AddModelError("ProfileImageFile", "Only image files (jpg, png, gif, bmp, webp) are allowed.");
-                    return Page();
+                    hasErrors = true;
                 }
+            }
 
+            if (hasErrors)
+            {
+                return Page(); 
+            }
+
+            if (ProfileImageFile != null && ProfileImageFile.Length > 0)
+            {
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ProfileImageFile.FileName);
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
 
@@ -78,15 +100,11 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
                 Employee.ProfileImage = "/images/" + fileName;
             }
-            
 
             _context.Employees.Add(Employee);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/Index");
         }
-
-
-
     }
-}
+    }
