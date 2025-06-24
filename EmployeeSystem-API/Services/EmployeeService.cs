@@ -154,53 +154,49 @@ namespace EmployeeSystem_API.Services
             return employees;
         }
 
-    
 
-     public async Task<string> UpdateEmployee(UpdateEmployeeDTO input)
+
+        public async Task<string> UpdateEmployee(UpdateEmployeeDTO input)
         {
             var employee = await _context.Employees.FindAsync(input.Id);
             if (employee == null)
                 return $"Employee with ID {input.Id} not found.";
 
-            // FirstName
+            
             if (!string.IsNullOrWhiteSpace(input.FirstName))
                 employee.FirstName = input.FirstName;
 
-            // LastName
             if (!string.IsNullOrWhiteSpace(input.LastName))
                 employee.LastName = input.LastName;
 
-            // PhoneNumber
+         
             if (!string.IsNullOrWhiteSpace(input.PhoneNumber))
             {
                 if (!DataValidate.IsValidPhoneNumber(input.PhoneNumber))
-                    return "Invalid phone number format.";
+                    return "Invalid phone number.";
                 employee.PhoneNumber = input.PhoneNumber;
             }
 
-            // Email
+            
             if (!string.IsNullOrWhiteSpace(input.Email))
             {
                 if (!DataValidate.IsValidEmail(input.Email))
-                    return "Invalid email format.";
+                    return "Invalid email.";
                 employee.Email = input.Email;
             }
-
-            // Salary
+  
             if (input.Salary.HasValue)
             {
                 if (!DataValidate.IsValidSalary(input.Salary.Value))
                     return "Salary must be at least 260.";
-
                 employee.Salary = input.Salary.Value;
             }
 
-
-            // Position
+        
             if (!string.IsNullOrWhiteSpace(input.Position))
                 employee.Position = input.Position;
 
-            // HireDate
+          
             if (input.HireDate.HasValue)
             {
                 if (!DataValidate.IsValidHireDate(input.HireDate.Value))
@@ -208,7 +204,7 @@ namespace EmployeeSystem_API.Services
                 employee.HireDate = input.HireDate.Value;
             }
 
-            // DateOfBirth
+       
             if (input.DateOfBirth.HasValue)
             {
                 if (!DataValidate.IsValidBirthDate(input.DateOfBirth.Value))
@@ -216,8 +212,9 @@ namespace EmployeeSystem_API.Services
                 employee.DateOfBirth = input.DateOfBirth.Value;
             }
 
+         
             await _context.SaveChangesAsync();
             return "Employee updated successfully.";
         }
     }
-}
+    }
