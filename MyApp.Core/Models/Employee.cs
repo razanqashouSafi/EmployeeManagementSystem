@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using EmployeeManagementSystem.Models.Validation;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 
 namespace EmployeeManagementSystem.Models
 {
