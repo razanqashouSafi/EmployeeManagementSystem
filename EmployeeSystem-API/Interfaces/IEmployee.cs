@@ -8,6 +8,8 @@ namespace EmployeeSystem_API.Interfaces
         Task<string>CreateEmployee(CreateEmployeeInput input);
 
         Task<UploadImageResult> UploadImage(int id, IFormFile profileImage);
+
+        Task<UploadImageResult> UpdateImageUpload(int id, IFormFile profileImage);
         Task<string> UpdateEmployee(UpdateEmployeeDTO input);
 
 

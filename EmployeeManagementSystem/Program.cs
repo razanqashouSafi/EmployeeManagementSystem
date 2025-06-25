@@ -9,6 +9,8 @@ builder.Services.AddRazorPages();
 //    opt.UseSqlServer("Data Source=LENOVO5014G\\SQLEXPRESS;Initial Catalog=PasswordManagerDb;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
 
 builder.Services.AddDbContext<EmployeeManagementDbContextb>(opt => opt.UseSqlServer("Data Source=MSI\\SQLEXPRESS13;Initial Catalog=EmployeeManagerDb;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

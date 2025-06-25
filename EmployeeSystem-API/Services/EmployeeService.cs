@@ -162,14 +162,14 @@ namespace EmployeeSystem_API.Services
             if (employee == null)
                 return $"Employee with ID {input.Id} not found.";
 
-            
+
             if (!string.IsNullOrWhiteSpace(input.FirstName))
                 employee.FirstName = input.FirstName;
 
             if (!string.IsNullOrWhiteSpace(input.LastName))
                 employee.LastName = input.LastName;
 
-         
+
             if (!string.IsNullOrWhiteSpace(input.PhoneNumber))
             {
                 if (!DataValidate.IsValidPhoneNumber(input.PhoneNumber))
@@ -177,14 +177,14 @@ namespace EmployeeSystem_API.Services
                 employee.PhoneNumber = input.PhoneNumber;
             }
 
-            
+
             if (!string.IsNullOrWhiteSpace(input.Email))
             {
                 if (!DataValidate.IsValidEmail(input.Email))
                     return "Invalid email.";
                 employee.Email = input.Email;
             }
-  
+
             if (input.Salary.HasValue)
             {
                 if (!DataValidate.IsValidSalary(input.Salary.Value))
@@ -192,11 +192,11 @@ namespace EmployeeSystem_API.Services
                 employee.Salary = input.Salary.Value;
             }
 
-        
+
             if (!string.IsNullOrWhiteSpace(input.Position))
                 employee.Position = input.Position;
 
-          
+
             if (input.HireDate.HasValue)
             {
                 if (!DataValidate.IsValidHireDate(input.HireDate.Value))
@@ -204,7 +204,7 @@ namespace EmployeeSystem_API.Services
                 employee.HireDate = input.HireDate.Value;
             }
 
-       
+
             if (input.DateOfBirth.HasValue)
             {
                 if (!DataValidate.IsValidBirthDate(input.DateOfBirth.Value))
@@ -212,9 +212,68 @@ namespace EmployeeSystem_API.Services
                 employee.DateOfBirth = input.DateOfBirth.Value;
             }
 
-         
+
             await _context.SaveChangesAsync();
             return "Employee updated successfully.";
+        }
+
+
+
+        public async Task<UploadImageResult> UpdateImageUpload(int id, IFormFile profileImage)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+            {
+                return new UploadImageResult
+                {
+                    Success = false,
+                    Message = $"Employee with ID {id} not found."
+                };
+            }
+
+            
+            string sharedImagesPath = @"C:\Users\admin\Source\Repos\EmployeeManagementSystem\EmployeeManagementSystem\wwwroot\images";
+
+            
+            if (!string.IsNullOrEmpty(employee.ProfileImage))
+            {
+                var oldImagePath = Path.Combine(sharedImagesPath, Path.GetFileName(employee.ProfileImage));
+                if (File.Exists(oldImagePath))
+                {
+                    File.Delete(oldImagePath);
+                }
+            }
+
+            if (profileImage == null || profileImage.Length == 0)
+            {
+                return new UploadImageResult
+                {
+                    Success = false,
+                    Message = "No image uploaded."
+                };
+            }
+
+            if (!Directory.Exists(sharedImagesPath))
+                Directory.CreateDirectory(sharedImagesPath);
+
+            var fileName = $"{Guid.NewGuid()}_{profileImage.FileName}";
+            var filePath = Path.Combine(sharedImagesPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await profileImage.CopyToAsync(stream);
+            }
+
+          
+            employee.ProfileImage = $"/images/{fileName}";
+            await _context.SaveChangesAsync();
+
+            return new UploadImageResult
+            {
+                Success = true,
+                Message = "Image uploaded successfully.",
+                ImageUrl = employee.ProfileImage
+            };
         }
     }
     }

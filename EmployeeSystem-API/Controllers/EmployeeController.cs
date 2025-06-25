@@ -110,5 +110,17 @@ namespace EmployeeSystem_API.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpPost("upload-image/{id}")]
+        public async Task<IActionResult> UpdateImageUpload(int id, IFormFile profileImage)
+        {
+            var result = await _appService.UpdateImageUpload(id, profileImage);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
     }
 }
