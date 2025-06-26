@@ -50,7 +50,6 @@ namespace EmployeeManagementSystem.Models
 
 
         [Display(Name = "Profile Image")]
-     
         public string? ProfileImage { get; set; }
     }
 }

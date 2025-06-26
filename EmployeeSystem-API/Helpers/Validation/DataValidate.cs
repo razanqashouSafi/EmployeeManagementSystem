@@ -5,6 +5,10 @@ namespace EmployeeSystem_API.Helpers.Validation
 {
     public static class  DataValidate
     {
+        private static readonly Regex PasswordRegex = new Regex(
+    @"^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[{\]};:<>|./?]).{8,}$",
+    RegexOptions.Compiled);
+
 
         public static bool IsValidEmail(string email)
         {
@@ -36,6 +40,16 @@ namespace EmployeeSystem_API.Helpers.Validation
             var age = today.Year - birthDate.Year;
             if (birthDate.Date > today.AddYears(-age)) age--;
             return age >= 18;
+        }
+
+
+     
+        public static bool IsValidPassword(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+                return false;
+
+            return PasswordRegex.IsMatch(password);
         }
     }
 }

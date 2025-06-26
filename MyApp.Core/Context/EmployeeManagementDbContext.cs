@@ -1,5 +1,6 @@
 ﻿using EmployeeManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
+using MyApp.Core.Models;
 
 namespace EmployeeManagementSystem.Context
 {
@@ -9,18 +10,14 @@ namespace EmployeeManagementSystem.Context
         public EmployeeManagementDbContextb(DbContextOptions dbContextOptions):base(dbContextOptions) { }
 
         public DbSet<Employee> Employees { get; set; }
-       
+        public DbSet<Admin> Admins { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Employee>()
+       .Property(e => e.Salary)
+       .HasColumnType("decimal(18,2)");  
+
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Employee>()
-       .HasIndex(e => e.PhoneNumber)
-       .IsUnique();
-
-            modelBuilder.Entity<Employee>()
-                .HasIndex(e => e.Email)
-                .IsUnique();
-
         }
     }
 }
