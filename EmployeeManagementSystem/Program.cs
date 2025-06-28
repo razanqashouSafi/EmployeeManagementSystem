@@ -1,5 +1,8 @@
-using EmployeeManagementSystem.Context;
+
 using Microsoft.EntityFrameworkCore;
+using MyApp.Core.Context;
+using MyApp.Core.Interfaces;
+using MyApp.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,9 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<EmployeeManagementDbContextb>(opt => opt.UseSqlServer("Data Source=MSI\\SQLEXPRESS13;Initial Catalog=EmployeeManagerDb;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"));
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<IEmployee, EmployeeService>();
+builder.Services.AddScoped<IAdminAuth, AdminAuthService>();
+
 
 var app = builder.Build();
 

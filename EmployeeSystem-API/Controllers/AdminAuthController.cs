@@ -1,5 +1,5 @@
-﻿using EmployeeSystem_API.DTOs.Request;
-using EmployeeSystem_API.Interfaces;
+﻿using MyApp.Core.DTOs.Request;
+using MyApp.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +28,9 @@ namespace EmployeeSystem_API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(String email, string pass)
+        public async Task<IActionResult> Login(LoginReqDTO input)
         {
-            var result = await _service.Login(email, pass);
+            var result = await _service.Login(input);
 
            
             if (result.StartsWith("Invalid"))

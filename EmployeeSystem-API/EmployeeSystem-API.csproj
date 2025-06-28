@@ -22,11 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="DTOs\Request\CreateEmployeeDTO.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\EmployeeManagementSystem\EmployeeManagementSystem.csproj" />
     <ProjectReference Include="..\MyApp.Core\MyApp.Core.csproj" />
   </ItemGroup>
 

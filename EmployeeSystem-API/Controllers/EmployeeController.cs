@@ -1,6 +1,7 @@
-﻿using EmployeeSystem_API.DTOs.Request;
-using EmployeeSystem_API.Interfaces;
-using EmployeeSystem_API.Services;
+﻿using MyApp.Core.DTOs.Request;
+using MyApp.Core.Interfaces;
+using MyApp.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,8 +19,10 @@ namespace EmployeeSystem_API.Controllers
             _appService = appService;
         }
 
+
+        
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateEmployee(CreateEmployeeInput input)
+        public async Task<IActionResult> CreateEmployee(CreateEmployeeInputDTO input)
         {
             try
             {
@@ -33,6 +36,7 @@ namespace EmployeeSystem_API.Controllers
         }
 
 
+      
 
         [HttpPost("[action]")]
         public async Task<IActionResult> UploadImage(int id, IFormFile profileImage)

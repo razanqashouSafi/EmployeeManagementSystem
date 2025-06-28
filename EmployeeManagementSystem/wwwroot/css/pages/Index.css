@@ -1,0 +1,104 @@
+.index-page {
+  padding: 2rem;
+}
+.index-page h2 {
+  color: #6a0dad;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.index-page .btn-primary {
+  background-color: #6a0dad;
+  border-color: #6a0dad;
+  color: #fff;
+  font-weight: 600;
+}
+.index-page .btn-primary:hover {
+  background-color: rgb(135.064516129, 16.564516129, 220.435483871);
+  border-color: rgb(135.064516129, 16.564516129, 220.435483871);
+}
+.index-page table {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+.index-page table th {
+  background-color: #6a0dad;
+  color: #fff;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1rem;
+}
+.index-page table td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+  color: #333;
+  font-size: 0.95rem;
+}
+.index-page table tr:last-child td {
+  border-bottom: none;
+}
+.index-page table .btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.index-page table .btn-warning {
+  background-color: #8a2be2;
+  border-color: #8a2be2;
+  color: #fff;
+}
+.index-page table .btn-warning:hover {
+  background-color: rgb(162.7593360996, 87.8630705394, 232.1369294606);
+  border-color: rgb(162.7593360996, 87.8630705394, 232.1369294606);
+}
+.index-page table .btn-info {
+  background-color: #9b30ff;
+  border-color: #9b30ff;
+  color: #fff;
+}
+.index-page table .btn-info:hover {
+  background-color: rgb(179.6376811594, 99, 255);
+  border-color: rgb(179.6376811594, 99, 255);
+}
+.index-page table .btn-danger {
+  background-color: #b300b3;
+  border-color: #b300b3;
+  color: #fff;
+}
+.index-page table .btn-danger:hover {
+  background-color: #e600e6;
+  border-color: #e600e6;
+}
+@media (max-width: 768px) {
+  .index-page table {
+    font-size: 0.85rem;
+  }
+  .index-page table th, .index-page table td {
+    padding: 0.5rem;
+  }
+  .index-page table .btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 992px) {
+  .index-page table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .index-page .btn {
+    display: inline-block;
+    margin-bottom: 0.2rem;
+  }
+}
+
+/*# sourceMappingURL=Index.css.map */

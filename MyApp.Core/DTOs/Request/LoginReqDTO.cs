@@ -4,27 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EmployeeManagementSystem.Models;
 
-namespace MyApp.Core.Models
+namespace MyApp.Core.DTOs.Request
 {
-    public class Admin:MainEntity
+    public class LoginReqDTO
     {
-     
-
-        public string Username { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        [Required]
+
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-       
         public string PasswordHash { get; set; }
-
-        public bool IsVerified { get; set; } = false;
-
-        public bool IsLogin { get; set; }=false;
     }
 }

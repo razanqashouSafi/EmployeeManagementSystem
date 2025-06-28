@@ -1,6 +1,6 @@
-﻿using EmployeeManagementSystem.Context;
-using EmployeeSystem_API.Interfaces;
-using EmployeeSystem_API.Services;
+﻿using MyApp.Core.Context;
+using MyApp.Core.Interfaces;
+using MyApp.Core.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -18,10 +18,10 @@ builder.Services.AddDbContext<EmployeeManagementDbContextb>(opt =>
         b => b.MigrationsAssembly("MyApp.Core"))
 );
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<IEmployee, EmployeeService>();
-
 builder.Services.AddScoped<IAdminAuth, AdminAuthService>();
-
 
 var secretKey = "LongPrimarySecrectForEmployeeManagerSystemASPCoreModuleForDevelopementPurppose";
 var key = Encoding.UTF8.GetBytes(secretKey);
@@ -53,10 +53,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+// فقط API
 app.MapControllers();
 
 app.Run();

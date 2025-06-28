@@ -1,8 +1,10 @@
-using EmployeeManagementSystem.Context;
+
 using EmployeeManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MyApp.Core.Context;
+using MyApp.Core.Models;
 
 namespace EmployeeManagementSystem.Pages
 {
@@ -22,6 +24,7 @@ namespace EmployeeManagementSystem.Pages
         public List<Employee> Employees { get; set; }
         public async Task OnGetAsync()
         {
+          
             Employees = await _context.Employees.ToListAsync();
         }
 

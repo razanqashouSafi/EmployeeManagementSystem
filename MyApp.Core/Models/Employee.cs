@@ -2,7 +2,7 @@
 using EmployeeManagementSystem.Models.Validation;
 
 
-namespace EmployeeManagementSystem.Models
+namespace MyApp.Core.Models
 {
     public class Employee: MainEntity
     {

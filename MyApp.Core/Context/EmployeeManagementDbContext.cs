@@ -1,8 +1,8 @@
-﻿using EmployeeManagementSystem.Models;
+﻿
 using Microsoft.EntityFrameworkCore;
 using MyApp.Core.Models;
 
-namespace EmployeeManagementSystem.Context
+namespace MyApp.Core.Context
 {
     public class EmployeeManagementDbContextb: DbContext
     {

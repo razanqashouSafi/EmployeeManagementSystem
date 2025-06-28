@@ -1,7 +1,9 @@
-using EmployeeManagementSystem.Context;
+
 using EmployeeManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyApp.Core.Context;
+using MyApp.Core.Models;
 
 namespace EmployeeManagementSystem.Pages.EmployeeFE
 {
