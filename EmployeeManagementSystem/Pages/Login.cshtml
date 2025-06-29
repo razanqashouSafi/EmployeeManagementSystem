@@ -4,37 +4,35 @@
 }
 
 <div class="login-container">
-    <div class="login-card">
-        <h2 class="login-title">Sign In</h2>
+    <div class="login-card-split">
+        <div class="login-left-section">
+            <h2 class="system-title">Employee Management</h2>
+        </div>
+        <div class="login-right-section">
+            <h2 class="login-title">Sign In</h2>
 
+            <div asp-validation-summary="All" class="text-danger"></div>
 
-        <div asp-validation-summary="All" class="text-danger" ></div>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="LoginInput.Email"></label>
+                    <input asp-for="LoginInput.Email" class="form-control" />
+                    <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label asp-for="LoginInput.PasswordHash"></label>
+                    <input asp-for="LoginInput.PasswordHash" class="form-control" type="password" />
+                    <span asp-validation-for="LoginInput.PasswordHash" class="text-danger"></span>
+                </div>
 
-        <form method="post">
-
-            <div class="form-group">
-                <label asp-for="LoginInput.Email"></label>
-                <input asp-for="LoginInput.Email" class="form-control" />
-                <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="LoginInput.PasswordHash"></label>
-                <input asp-for="LoginInput.PasswordHash" class="form-control" type="password" />
-                <span asp-validation-for="LoginInput.PasswordHash" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn-submit"><span>Sign In</span></button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <button type="submit" class="btn-submit"><span>Sign In</span></button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-
-
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

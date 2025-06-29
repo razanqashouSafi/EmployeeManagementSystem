@@ -38,6 +38,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false,
         ValidateAudience = false,
         ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
         ClockSkew = TimeSpan.Zero
     };
@@ -58,7 +59,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// فقط API
+
 app.MapControllers();
 
 app.Run();

@@ -1,0 +1,86 @@
+.page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.employee-details-card {
+  width: 100%;
+  max-width: 900px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.employee-details-card .profile-image {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 1.5rem;
+}
+.employee-details-card .profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #6a0dad;
+}
+.employee-details-card h2 {
+  color: #6a0dad;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.employee-details-card .details {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.employee-details-card .details p {
+  margin: 0;
+  background: #f9f9f9;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.employee-details-card .details p strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 0.3rem;
+}
+.employee-details-card .details p span {
+  font-size: 1.05rem;
+  color: #222;
+  font-weight: 600;
+}
+.employee-details-card .btn-primary {
+  margin-top: 2rem;
+  background-color: #6a0dad;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+.employee-details-card .btn-primary:hover {
+  background-color: rgb(135.064516129, 16.564516129, 220.435483871);
+}
+@media (max-width: 768px) {
+  .employee-details-card .details {
+    grid-template-columns: 1fr;
+  }
+  .employee-details-card .btn-primary {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=EmployeeDelails.css.map */
