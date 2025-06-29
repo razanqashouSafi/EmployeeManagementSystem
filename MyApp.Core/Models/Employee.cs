@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using EmployeeManagementSystem.Models.Validation;
+using MyApp.Core.Models.Validation;
 
 
 namespace MyApp.Core.Models

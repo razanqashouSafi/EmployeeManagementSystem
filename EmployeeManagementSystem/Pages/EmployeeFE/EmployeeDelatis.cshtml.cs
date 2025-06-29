@@ -1,5 +1,5 @@
 
-using EmployeeManagementSystem.Models;
+using MyApp.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyApp.Core.Context;

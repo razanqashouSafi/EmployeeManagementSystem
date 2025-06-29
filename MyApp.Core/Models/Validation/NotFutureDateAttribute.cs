@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EmployeeManagementSystem.Models.Validation
+namespace MyApp.Core.Models.Validation
 {
     public class NotFutureDateAttribute : ValidationAttribute
     {

@@ -28,16 +28,14 @@ namespace EmployeeSystem_API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginReqDTO input)
+        public async Task<IActionResult> Login([FromBody] LoginReqDTO input)
         {
             var result = await _service.Login(input);
 
-           
-            if (result.StartsWith("Invalid"))
-                return Unauthorized(result);
+            if (!result.IsSuccess)
+                return Unauthorized(new { error = result.ErrorMessage });
 
-           
-            return Ok(new { Token = result });
+            return Ok(new { token = result.Token });
         }
 
     }

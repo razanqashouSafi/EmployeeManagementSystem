@@ -1,5 +1,5 @@
 ﻿using MyApp.Core.Context;
-using EmployeeManagementSystem.Models;
+using MyApp.Core.Models;
 using MyApp.Core.DTOs.Request;
 using MyApp.Core.DTOs.Response;
 using MyApp.Core.Helpers.Validation;

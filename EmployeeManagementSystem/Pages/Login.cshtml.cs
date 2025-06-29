@@ -54,13 +54,18 @@ namespace EmployeeManagementSystem.Pages
                 return Page();
             }
 
-           
             var token = result.Token;
 
-           
+            Response.Cookies.Append("AuthToken", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                Expires = DateTimeOffset.UtcNow.AddHours(1)
+            });
 
             return RedirectToPage("/Index");
         }
+
 
     }
 }
