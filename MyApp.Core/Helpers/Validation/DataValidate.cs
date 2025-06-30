@@ -12,9 +12,35 @@ namespace MyApp.Core.Helpers.Validation
 
         public static bool IsValidEmail(string email)
         {
-            return !string.IsNullOrWhiteSpace(email) &&
-                   new EmailAddressAttribute().IsValid(email);
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                if (addr.Address != email)
+                    return false;
+
+                var domainParts = addr.Host.Split('.');
+                if (domainParts.Length < 2)
+                    return false;
+
+                var tld = domainParts[^1].ToLower();
+                var validTlds = new HashSet<string>
+        {
+            "com", "net", "org", "edu", "gov", "mil", "int",
+            "info", "biz", "io", "me", "co"
+        };
+
+                return validTlds.Contains(tld);
+            }
+            catch
+            {
+                return false;
+            }
         }
+
+
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(phoneNumber))

@@ -34,7 +34,7 @@
                         <a asp-page="/EmployeeFE/EmployeeDelatis" asp-route-id="@emp.Id" class="btn btn-info btn-sm">Details</a>
 
                         <form method="post" asp-page-handler="Delete" asp-route-id="@emp.Id" style="display:inline;">
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm delete-button">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -42,6 +42,16 @@
         </tbody>
     </table>
 </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/deleteConfirm.js"></script>
+
+}
 @section Styles {
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/test.css" />
+
+
+   
 }

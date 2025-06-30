@@ -1,0 +1,11 @@
+﻿.swal2-title {
+    font-size: 19px !important;
+   
+}
+.swal2-popup .swal2-confirm {
+    margin-left: 20px !important;
+}
+
+.swal2-popup .swal2-cancel {
+    margin-right: 20px !important;
+}
