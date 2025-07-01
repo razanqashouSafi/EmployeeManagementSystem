@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Core.Context;
 using MyApp.Core.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MyApp.Core.Helpers;
 
 namespace EmployeeManagementSystem.Pages.EmployeeFE
 {
@@ -27,20 +29,26 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
         public IFormFile? ProfileImageFile { get; set; }
 
 
-
+        public List<SelectListItem> PositionOptions { get; set; }
 
         public IActionResult OnGet(int id)
         {
+
+            PositionOptions = Position.Positions;
             Employee = _context.Employees.Find(id);
+
 
             if (Employee == null)
             {
                 return NotFound();
             }
 
-            return Page();
-        }
 
+            return Page();
+
+
+          
+            }
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

@@ -1,12 +1,11 @@
 ﻿
 using MyApp.Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
+using MyApp.Core.Helpers;
 using MyApp.Core.Context;
-using MyApp.Core.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace EmployeeManagementSystem.Pages.EmployeeFE
@@ -16,6 +15,7 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
 
         private readonly EmployeeManagementDbContextb _context;
 
+        public List<SelectListItem> PositionOptions { get; set; }
 
 
         public AddEmployeeModel(EmployeeManagementDbContextb context)
@@ -32,6 +32,10 @@ namespace EmployeeManagementSystem.Pages.EmployeeFE
         public IFormFile? ProfileImageFile { get; set; }
         public void OnGet()
         {
+            PositionOptions = Position.Positions;
+      
+
+
         }
 
 

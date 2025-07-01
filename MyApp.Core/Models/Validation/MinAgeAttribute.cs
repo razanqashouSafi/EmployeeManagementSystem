@@ -2,14 +2,14 @@
 
 namespace MyApp.Core.Models.Validation
 {
-    public class MinAgeAttribute: ValidationAttribute
+    public class MinAgeAttribute : ValidationAttribute
     {
         private readonly int _minAge;
 
         public MinAgeAttribute(int minAge)
         {
             _minAge = minAge;
-            ErrorMessage = $"Employee must be at least {_minAge} years old.";
+            // لا تعيّن ErrorMessage هنا حتى يسمح بالتمرير الخارجي
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -32,7 +32,14 @@ namespace MyApp.Core.Models.Validation
             if (dateOfBirth > today.AddYears(-age)) age--;
 
             if (age < _minAge)
-                return new ValidationResult(ErrorMessage);
+            {
+                // إذا تم تمرير رسالة خطأ مخصصة استعملها، وإلا استعمل الرسالة الافتراضية
+                var errorMessage = string.IsNullOrEmpty(ErrorMessage)
+                    ? $"Employee must be at least {_minAge} years old."
+                    : ErrorMessage;
+
+                return new ValidationResult(errorMessage);
+            }
 
             return ValidationResult.Success;
         }

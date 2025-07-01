@@ -1,0 +1,8 @@
+﻿.flatpickr-day.selected,
+.flatpickr-day.selected:hover,
+.flatpickr-day:focus,
+.flatpickr-day:hover {
+    background: purple !important; 
+    color: white !important;
+    border-color: purple !important;
+}
