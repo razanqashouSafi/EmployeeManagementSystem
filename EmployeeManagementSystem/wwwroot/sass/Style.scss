@@ -1,7 +1,6 @@
 ﻿@use 'sass:color';
-// لاستيراد مكتبة الألوان من Sass (مهم إذا تستخدم color.adjust مثلاً)
 
-@use 'utils/_Mixin' as mixin; // تعطي Namespace "mixin"
+@use 'utils/_Mixin' as mixin; 
 @use 'pages/heaader';
 @use 'pages/AddEmployee';
 @use 'pages/EditEmployee';

@@ -118,7 +118,7 @@ namespace MyApp.Core.Services
         }
 
 
-        public async Task<List<EmployeeDelatis>> GetEmployee(int id)
+        public async Task<EmployeeDelatis> GetEmployee(int id)
         {
             var employee = await _context.Employees
                 .Where(e => e.Id == id)
@@ -134,17 +134,17 @@ namespace MyApp.Core.Services
                     DateOfBirth = e.DateOfBirth,
                     ProfileImage = e.ProfileImage
                 })
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
             return employee;
         }
-
 
         public async Task<List<AllEmployeeOutputDTO>> GetAllEmployee()
         {
             var employees = await _context.Employees
                 .Select(e => new AllEmployeeOutputDTO
                 {
+                    Id = e.Id,
                     FirstName = e.FirstName,
                     LastName = e.LastName,
                     PhoneNumber = e.PhoneNumber,

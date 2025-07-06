@@ -16,7 +16,8 @@ namespace MyApp.Core.Interfaces
 
         Task<string> DeleteEmployee(int id);
 
-        Task<List<EmployeeDelatis>> GetEmployee(int id);
+        Task<EmployeeDelatis> GetEmployee(int id);
+
 
         Task<List<AllEmployeeOutputDTO>> GetAllEmployee();
 

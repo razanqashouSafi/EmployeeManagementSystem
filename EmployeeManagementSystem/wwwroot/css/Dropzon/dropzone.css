@@ -1,0 +1,47 @@
+﻿.dropzone {
+    min-height: 150px !important;
+    border: 3px solid #6a0dad !important;
+    border-radius: 7px !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dz-remove {
+    color: red !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    font-size:13px;
+    font-weight:500
+}
+
+
+.dropzone .dz-success-mark,
+.dropzone .dz-error-mark {
+    display: none !important;
+}
+.dropzone .dz-filename span[data-dz-name] {
+    font-size: 0.7rem; 
+    color: rgba(128, 128, 128, 0.5); 
+}
+
+
+.dropzone .dz-filename span[data-dz-name] {
+    font-size: 0.7rem;
+    color: rgba(128, 128, 128, 0.5);
+    margin-top: 0px
+}
+
+
+.dropzone .dz-size span[data-dz-size] {
+    font-size: 0.7rem;
+    color: rgba(128, 128, 128, 0.4); 
+    margin-top:0;
+}
+img{
+    width:90px;
+}
+.dz-message{
+    font-size:14px;
+    font-weight:430;
+}

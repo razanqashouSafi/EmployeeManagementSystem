@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Core.Context;
 using MyApp.Core.Models;
+using MyApp.Core.Interfaces;
+using MyApp.Core.DTOs.Response;
 
 namespace EmployeeManagementSystem.Pages
 {
@@ -12,34 +14,39 @@ namespace EmployeeManagementSystem.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly EmployeeManagementDbContextb _context;
-
-        public IndexModel(ILogger<IndexModel> logger, EmployeeManagementDbContextb context)
+        private readonly IEmployee _employeeService;
+        public IndexModel(ILogger<IndexModel> logger, IEmployee employeeService)
         {
             _logger = logger;
-            _context = context;
+         
+            _employeeService = employeeService;
         }
 
 
       
-        public List<Employee> Employees { get; set; }
+        public List<AllEmployeeOutputDTO> Employees { get; set; } = new();
+
+
+
         public async Task OnGetAsync()
         {
-          
-            Employees = await _context.Employees.ToListAsync();
+
+            Employees = await _employeeService.GetAllEmployee();
         }
 
 
-        public  IActionResult OnPostDelete(int id)
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            var employee=_context.Employees.Find( id);
-            if (employee != null)
-            {
-               _context.Employees.Remove(employee);
-              _context.SaveChanges();
+            var result = await _employeeService.DeleteEmployee(id);
 
+            if (!result.Contains("success"))
+            {
+                ModelState.AddModelError(string.Empty, result);
+                return Page();
             }
 
             return RedirectToPage("/Index");
         }
+
     }
 }

@@ -1,4 +1,4 @@
-
+﻿
 using Microsoft.EntityFrameworkCore;
 using MyApp.Core.Context;
 using MyApp.Core.Interfaces;
@@ -27,11 +27,43 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//app.Use(async (context, next) =>
+//{
+//    var watch = System.Diagnostics.Stopwatch.StartNew();
+
+//    await next(); // كمل الطلب
+
+//    watch.Stop();
+//    var time = watch.ElapsedMilliseconds;
+
+//    context.Response.WriteAsync($"⌛ الوقت المستغرق: {time} مللي ثانية");
+//});
+
+
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred: {ex.Message}");
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync("Server error occurred, please try again later.");
+    }
+});
+
+
+
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 
 app.UseAuthorization();
 

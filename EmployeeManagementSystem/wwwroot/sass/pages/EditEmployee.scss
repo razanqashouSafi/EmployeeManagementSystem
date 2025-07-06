@@ -1,7 +1,0 @@
-﻿@use '../utils/_Mixin' as mixin;
-
-
-.edit-employee-card {
-  
-    @include mixin.employee-card-style(#8a2be2);
-}

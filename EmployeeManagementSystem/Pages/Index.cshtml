@@ -3,13 +3,16 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-
+@using EmployeeManagementSystem.Helper;
 
 <div class="container mt-4  index-page">
     <h2>Employee Data</h2>
 
-    <a class="btn btn-primary mb-3" asp-area="" asp-page="/EmployeeFE/AddEmployee">Add Employee</a>
+    @Html.ActionButton(
+            Url.Page("/EmployeeFE/ManageEmployee"),
+            "Add Employee",
+            "btn-primary mb-3"
+            )
 
     <table class="table table-bordered table-striped" id="employeeTable">
         <thead>
@@ -30,8 +33,9 @@
                     <td>@emp.Email</td>
                     <td>@emp.PhoneNumber</td>
                     <td>
-                        <a asp-page="/EmployeeFE/EditEmployee" asp-route-id="@emp.Id" class="btn btn-warning btn-sm">Edit</a>
-                        <a asp-page="/EmployeeFE/EmployeeDelatis" asp-route-id="@emp.Id" class="btn btn-info btn-sm">Details</a>
+                        @Html.ActionButton(Url.Page("/EmployeeFE/ManageEmployee", new { id = emp.Id }), "Edit", "btn-warning")
+                        @Html.ActionButton(Url.Page("/EmployeeFE/EmployeeDelatis", new { id = emp.Id }), "Details", "btn-info")
+
 
                         <form method="post" asp-page-handler="Delete" asp-route-id="@emp.Id" style="display:inline;">
                             <button type="submit" class="btn btn-danger btn-sm delete-button">Delete</button>
